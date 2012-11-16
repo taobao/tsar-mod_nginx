@@ -41,7 +41,6 @@ Configuration
     ####example: 
     >`export NGX_TSAR_HOST=/tmp/nginx-tsar.sock`
 
-    ####nginx server(which includes the location /nginx_status )
-    ####must also listen to the unix domain socket
-    >`listen unix:/tmp/nginx-tsar.sock`
+    nginx server(which includes the location /nginx_status) must also listen to the unix domain socket path
+    >`listen unix:/tmp/nginx-tsar.sock;`
 
