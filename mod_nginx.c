@@ -19,6 +19,8 @@ struct stats_nginx {
 struct hostinfo {
     char *host;
     int port;
+    char *server_name;
+    char *uri;
 };
 
 static char *nginx_usage = "    --nginx            nginx statistics";
@@ -71,6 +73,12 @@ static void init_nginx_host_info(struct hostinfo *p)
 
     port = getenv("NGX_TSAR_PORT");
     p->port = port ? atoi(port) : 80;
+
+    p->uri = getenv("NGX_TSAR_URI");
+    p->uri = p->uri ? p->uri : "/nginx_status";
+
+    p->server_name = getenv("NGX_TSAR_SERVER_NAME");
+    p->server_name = p->server_name ? p->server_name : "status.taobao.com";
 }
 
 
@@ -84,9 +92,6 @@ void read_nginx_stats(struct module *mod)
     struct sockaddr_in servaddr;
     struct sockaddr_un servaddr_un;
     FILE *stream = NULL;
-    /* FIX me */
-    char *uri = "nginx_status";
-    char *host = "status.taobao.com";
     struct hostinfo hinfo;
     init_nginx_host_info(&hinfo);
     struct stats_nginx st_nginx;
@@ -121,7 +126,7 @@ void read_nginx_stats(struct module *mod)
         "Host: %s\r\n"
         "Accept:*/*\r\n"
         "Connection: Close\r\n\r\n",
-        uri, host);
+        hinfo.uri, hinfo.server_name);
 
     if ((m = connect(sockfd, (struct sockaddr *) addr, addr_len)) == -1 ) {
         goto writebuf;
