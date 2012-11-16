@@ -44,3 +44,11 @@ Configuration
     nginx server(which includes the location /nginx_status) must also listen to the unix domain socket path
     >`listen unix:/tmp/nginx-tsar.sock;`
 
+4. The uri and server name send to the nginx server can alse be changed:
+
+    ####example: 
+    >`export NGX_TSAR_SERVER_NAME=status.taobao.com`
+
+    >`export NGX_TSAR_URI=/nginx_status`
+
+

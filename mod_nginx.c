@@ -121,7 +121,7 @@ void read_nginx_stats(struct module *mod)
     }
 
     sprintf(request,
-        "GET /%s HTTP/1.0\r\n"
+        "GET %s HTTP/1.0\r\n"
         "User-Agent: Wget/1.9\r\n"
         "Host: %s\r\n"
         "Accept:*/*\r\n"
