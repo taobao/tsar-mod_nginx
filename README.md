@@ -8,8 +8,8 @@ Support read data from nginx by common socket or unix domain socket.
 
 Quick start
 -----------
-1. Install [tsar](http://code.taobao.org/p/tsar/src/).
-2. Generate a new module by using [tsardevel](http://code.taobao.org/p/tsar/wiki/mod/).
+1. Install [tsar](https://github.com/alibaba/tsar).
+2. Generate a new module by using [tsardevel](https://github.com/alibaba/tsar/tree/master/devel).
 
     >`tsardevel ngx_mod`
 3. Replace ngx_mod.c.
@@ -23,7 +23,14 @@ Configuration
 -------------
 1. Default host is 127.0.0.1 and default port is 80. But we can change both (or one of) the host and port:
 
-    ####example: 
+    ####config port:
+    >modify `/etc/tsar/tsar.conf`
+
+    >add port after `mod_nginx on` such as `mod_nginx on 8080`
+    
+    or
+
+    ####modify EV: 
     >`export NGX_TSAR_HOST=192.168.0.1`
 
     >`export NGX_TSAR_PORT=8080`
