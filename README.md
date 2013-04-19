@@ -34,6 +34,8 @@ Configuration
     >`export NGX_TSAR_HOST=192.168.0.1`
 
     >`export NGX_TSAR_PORT=8080`
+    
+    notice:config's priority is higher than modify EV
 
 2. Stub Status module must be included,and add configuration as below:
 
